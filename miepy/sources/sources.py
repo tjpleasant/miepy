@@ -208,17 +208,17 @@ class combined_source(source):
     def structure(self, position, k, lmax):
         return sum((source.structure(position, k, lmax) for source in self.sources))
 
-    def E_field(self, x1, x2, x3, k, far=False, spherical=False):
-        return sum((source.E_field(x1, x2, x3, k, far, spherical) for source in self.sources))
+    def E_field(self, x1, x2, x3, k, far=False, spherical=False, sampling=30):
+        return sum((source.E_field(x1, x2, x3, k, far, spherical, sampling=30) for source in self.sources))
 
-    def H_field(self, x1, x2, x3, k, far=False, spherical=False):
-        return sum((source.H_field(x1, x2, x3, k, far, spherical) for source in self.sources))
+    def H_field(self, x1, x2, x3, k, far=False, spherical=False, sampling=30):
+        return sum((source.H_field(x1, x2, x3, k, far, spherical, sampling=30) for source in self.sources))
 
-    def E_angular(self, theta, phi, k, radius=None, origin=None):
-        return sum((source.E_angular(theta, phi, k, radius, origin) for source in self.sources))
+    def E_angular(self, theta, phi, k, radius=None, origin=None, sampling=30):
+        return sum((source.E_angular(theta, phi, k, radius, origin, sampling=30) for source in self.sources))
 
-    def H_angular(self, theta, phi, k, radius=None, origin=None):
-        return sum((source.H_angular(theta, phi, k, radius, origin) for source in self.sources))
+    def H_angular(self, theta, phi, k, radius=None, origin=None, sampling=30):
+        return sum((source.H_angular(theta, phi, k, radius, origin, sampling=30) for source in self.sources))
 
     def reflect(self, interface, medium, wavelength):
         return combined_source(*[src.reflect(interface, medium, wavelength) for src in self.sources])
