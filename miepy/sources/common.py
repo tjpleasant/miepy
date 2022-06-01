@@ -60,9 +60,9 @@ class bigaussian_beam(polarized_beam):
 
 class hermite_gaussian_beam(polarized_beam):
     def __init__(self, l, m, width, polarization, power=1, theta_max=np.pi/2, phase=0, center=None,
-                theta=0, phi=0, standing=False):
+                theta=0, phi=0, standing=False, amplitude=1):
         super().__init__(polarization=polarization, power=power, theta_max=theta_max,
-                phase=phase, center=center, theta=theta, phi=phi, standing=standing)
+                phase=phase, center=center, theta=theta, phi=phi, standing=standing, amplitude=amplitude)
         self.width = width
         self.l = l
         self.m = m
@@ -81,9 +81,9 @@ class hermite_gaussian_beam(polarized_beam):
 
 class laguerre_gaussian_beam(polarized_beam):
     def __init__(self, p, l, width, polarization, power=1, theta_max=np.pi/2, phase=0, center=None,
-                theta=0, phi=0, standing=False):
+                theta=0, phi=0, standing=False, amplitude=1):
         super().__init__(polarization=polarization, power=power, theta_max=theta_max,
-                phase=phase, center=center, theta=theta, phi=phi, standing=standing)
+                phase=phase, center=center, theta=theta, phi=phi, standing=standing, amplitude=amplitude)
         self.width = width
         self.p = p
         self.l = l
