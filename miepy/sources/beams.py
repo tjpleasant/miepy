@@ -292,10 +292,10 @@ class polarized_beam(beam, polarized_propagating_source):
     """abstract base class for polarized beam sources"""
     __metaclass__ = ABCMeta
 
-    def __init__(self, polarization, power=1, theta_max=np.pi/2, phase=0, center=None, theta=0, phi=0, standing=False):
+    def __init__(self, polarization, power=1, theta_max=np.pi/2, phase=0, center=None, theta=0, phi=0, standing=False, amplitude=1):
         polarized_propagating_source.__init__(self, polarization=polarization)
         beam.__init__(self, power=power, theta_max=theta_max, phase=phase, center=center,
-            theta=theta, phi=phi, standing=standing)
+            theta=theta, phi=phi, standing=standing, amplitude=amplitude)
 
 class reflected_beam(beam):
     def __init__(self, incident_beam, interface, wavelength, medium):
