@@ -18,8 +18,8 @@ class beam(propagating_source):
     """abstract base class for beam sources"""
     __metaclass__ = ABCMeta
 
-    def __init__(self, power=1, theta_max=np.pi/2, phase=0, center=None, theta=0, phi=0, standing=False):
-        propagating_source.__init__(self, amplitude=1, phase=phase, origin=center, theta=theta, phi=phi, standing=standing)
+    def __init__(self, power=1, theta_max=np.pi/2, phase=0, center=None, theta=0, phi=0, standing=False, amplitude=1):
+        propagating_source.__init__(self, amplitude=amplitude, phase=phase, origin=center, theta=theta, phi=phi, standing=standing)
         self.power = power
         self.theta_max = theta_max
         self.center = self.origin
@@ -44,7 +44,8 @@ class beam(propagating_source):
         E = self.angular_spectrum(THETA, PHI, k)
         S = 0.5/Z0*np.linalg.norm(E, axis=0)**2*np.sin(THETA)
         P = miepy.vsh.misc.trapz_2d(theta, phi, S.T).real
-        return np.sqrt(self.power/P)
+        # Added amplitude factor for superposition here.
+        return self.amplitude*np.sqrt(self.power/P)
 
     def E_field(self, x1, x2, x3, k, far=False, spherical=False, sampling=30, origin=None):
         """
